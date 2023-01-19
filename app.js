@@ -1,6 +1,19 @@
 const express = require("express");
 const app = express();
-const PORT = 8001;
+const cors = require("cors");
+const db = require("./src/db/database");
+const PORT = require("./src/config").port;
+
+app.use(express.json());
+app.use(cors());
+
+// db.authenticate().then(() => {
+//   console.log(`✔️ Database authenticate succesfully!`);
+// });
+
+// db.sync().then(() => {
+//   console.log(`💠 Database synced succesfully!`);
+// });
 
 app.get("/", (req, res) => {
   res
