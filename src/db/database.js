@@ -7,15 +7,6 @@ const db = new Sequelize({
   username: config.db.username,
   password: config.db.password,
   database: config.db.database,
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 300000,
-    acquire: 300000,
-  },
-  logging: (log) => {
-    console.log("Logging!", log);
-  },
 });
 
 db.authenticate()
