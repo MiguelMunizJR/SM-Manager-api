@@ -17,7 +17,7 @@ app.use("/api/v1/users", usersRouter);
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Hello world!"
-  });
+  }).end();
 });
 
 app.listen(PORT, () => {
