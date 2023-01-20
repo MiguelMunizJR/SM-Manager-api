@@ -1,5 +1,6 @@
 const Users = require("../models/users.model");
 const uuid = require("uuid");
+const { hashPassword } = require("../utils/cryptoPass");
 
 const getAllUsers = async () => {
   const data = await Users.findAll();
@@ -12,7 +13,7 @@ const createProduct = async (data) => {
     firstName: data.firstName,
     lastName: data.lastName,
     email: data.email,
-    password: data.password,
+    password: hashPassword(data.password),
     birthday: data.birthday,
   });
 

@@ -1,10 +1,10 @@
-POST http://localhost:8001/api/v1/users
+POST https://crud-api-express.onrender.com/api/v1/users
 Content-Type: application/json
 
 {
-  "firstName": "Prueba",
-  "lastName": "Muñiz",
-  "email": "prueba@hotmail.com",
-  "password": "prueba123",
-  "birthday": "2017/01/24"
+  "firstName": "Gabriela",
+  "lastName": "Jimenez",
+  "email": "gabriela@hotmail.com",
+  "password": "gabriela123",
+  "birthday": "1999/11/16"
 }
