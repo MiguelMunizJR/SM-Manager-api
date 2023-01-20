@@ -1,27 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const db = require("./src/db/database");
 const PORT = require("./src/utils/config").port;
+require("./src/db/database");
 
+//* import router
+const usersRouter = require("./src/users/users.router");
+
+//* JSON and Cors
 app.use(express.json());
 app.use(cors());
 
-db.authenticate()
-  .then(() => {
-    console.log("✔️  Database authenticate succesfully!");
-  })
-  .catch((err) => {
-    console.error(err);
-  });
-
-db.sync()
-  .then(() => {
-    console.log("💠 Database synced succesfully!");
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+//* Routes
+app.use("/api/v1/users", usersRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({
