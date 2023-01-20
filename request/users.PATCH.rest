@@ -1,0 +1,6 @@
+PATCH http://localhost:8001/api/v1/users/b4a2df84-8f9b-44bd-8517-c51bfa440320
+Content-Type: application/json
+
+{
+  "password": "miranda123"
+}

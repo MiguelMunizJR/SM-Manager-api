@@ -1,0 +1,10 @@
+POST http://localhost:8001/api/v1/users
+Content-Type: application/json
+
+{
+  "firstName": "Prueba",
+  "lastName": "Muñiz",
+  "email": "prueba@hotmail.com",
+  "password": "prueba123",
+  "birthday": "2017/01/24"
+}
