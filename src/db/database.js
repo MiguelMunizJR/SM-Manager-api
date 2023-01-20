@@ -1,22 +1,23 @@
 const { Sequelize } = require("sequelize");
 const config = require("../utils/config");
+const { Pool } = require("pg");
 
 const db = new Sequelize({
   dialect: "postgres",
   host: config.db.host,
   username: config.db.username,
   password: config.db.password,
+  database: config.db.database
+});
+
+const pool = new Pool({
+  user: config.db.username,
+  host: config.db.host,
   database: config.db.database,
-  pool: {
-    min: 0,
-    max: 10,
-    createTimeoutMillis: 8000,
-    acquireTimeoutMillis: 8000,
-    idleTimeoutMillis: 8000,
-    reapIntervalMillis: 1000,
-    createRetryIntervalMillis: 100,
-    acquire: 5000,
-  },
+  password: config.db.password,
+  port: config.port,
+  idleTimeoutMillis: 0,
+  connectionTimeoutMillis: 0,
 });
 
 db.authenticate()
