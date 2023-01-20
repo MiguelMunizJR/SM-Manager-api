@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const config = {
   port: process.env.PORT,
-  nodeEnv: process.env.NODE_ENV,
+  nodeEnv: process.env.NODE_ENV || "localhost",
   db: {
     host: process.env.DB_HOST,
     username: process.env.DB_USER,
