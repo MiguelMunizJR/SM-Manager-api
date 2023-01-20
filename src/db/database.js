@@ -1,23 +1,22 @@
 const { Sequelize } = require("sequelize");
 const config = require("../utils/config");
-const { Pool } = require("pg");
 
 const db = new Sequelize({
   dialect: "postgres",
   host: config.db.host,
   username: config.db.username,
   password: config.db.password,
-  database: config.db.database
-});
-
-const pool = new Pool({
-  user: config.db.username,
-  host: config.db.host,
   database: config.db.database,
-  password: config.db.password,
-  port: config.port,
-  idleTimeoutMillis: 0,
-  connectionTimeoutMillis: 0,
+  //? Opciones para conexion con DB en produccion
+  dialectOptions:
+    process.env.NODE_ENV === "production"
+      ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      }
+      : {},
 });
 
 db.authenticate()
