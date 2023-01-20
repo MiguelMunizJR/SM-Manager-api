@@ -11,14 +11,15 @@ const usersRouter = require("./src/users/users.router");
 app.use(express.json());
 app.use(cors());
 
-//* Routes
-app.use("/api/v1/users", usersRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Hello world!"
   }).end();
 });
+
+//* Routes
+app.use("/api/v1/users", usersRouter);
 
 app.listen(PORT, () => {
   console.log(`🌐 Server online at port: ${PORT}`);

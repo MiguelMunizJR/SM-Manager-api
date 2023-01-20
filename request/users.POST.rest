@@ -2,9 +2,9 @@ POST https://crud-api-express.onrender.com/api/v1/users
 Content-Type: application/json
 
 {
-  "firstName": "Gabriela",
-  "lastName": "Jimenez",
-  "email": "gabriela@hotmail.com",
-  "password": "gabriela123",
-  "birthday": "1999/11/16"
+  "firstName": "Miranda",
+  "lastName": "Muñiz",
+  "email": "miranda@hotmail.com",
+  "password": "miranda123",
+  "birthday": "2017-01-24"
 }
