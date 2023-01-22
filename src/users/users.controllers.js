@@ -3,7 +3,11 @@ const uuid = require("uuid");
 const { hashPassword } = require("../utils/cryptoPass");
 
 const getAllUsers = async () => {
-  const data = await Users.findAll();
+  const data = await Users.findAll({
+    attributes: {
+      exclude: ["id", "createdAt", "updatedAt"]
+    }
+  });
   return data;
 };
 
