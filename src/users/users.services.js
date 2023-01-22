@@ -1,10 +1,15 @@
+
 const usersControllers = require("./users.controllers");
 
 const getAllUsers = (req, res) => {
   usersControllers
     .getAllUsers()
     .then((response) => {
-      res.status(200).json(response);
+      res.status(200).json({
+        length: response.length,
+        timeZone: new Date(),
+        data: response
+      });
     })
     .catch((err) => {
       res.status(400).json({

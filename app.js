@@ -11,7 +11,6 @@ const usersRouter = require("./src/users/users.router");
 app.use(express.json());
 app.use(cors());
 
-
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "Hello world!"

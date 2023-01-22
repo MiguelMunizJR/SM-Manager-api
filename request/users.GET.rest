@@ -1,1 +1,5 @@
-GET https://crud-api-express.onrender.com/api/v1/users
+GET http://localhost:8001/api/v1/users
+
+###
+
+# GET https://crud-api-express.onrender.com/api/v1/users
