@@ -1,12 +1,14 @@
 const Users = require("../models/users.model");
 const uuid = require("uuid");
-const { hashPassword } = require("../utils/cryptoPass");
+
+//* Hash password disabled!
+// const { hashPassword } = require("../utils/cryptoPass");
 
 const getAllUsers = async () => {
   const data = await Users.findAll({
     attributes: {
-      exclude: ["createdAt", "updatedAt"]
-    }
+      exclude: ["createdAt", "updatedAt"],
+    },
   });
   return data;
 };
@@ -17,8 +19,9 @@ const createProduct = async (data) => {
     firstName: data.firstName,
     lastName: data.lastName,
     email: data.email,
-    password: hashPassword(data.password),
+    password: data.password,
     birthday: data.birthday,
+    isActive: data.isActive,
   });
 
   return newUser;

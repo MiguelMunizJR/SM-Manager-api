@@ -19,7 +19,7 @@ const getAllUsers = (req, res) => {
 };
 
 const createUser = (req, res) => {
-  const { firstName, lastName, email, password, birthday } = req.body;
+  const { firstName, lastName, email, password, birthday, isActive } = req.body;
 
   if (firstName && lastName && email && password && birthday) {
     usersControllers
@@ -29,6 +29,7 @@ const createUser = (req, res) => {
         email,
         password,
         birthday,
+        isActive
       })
       .then((response) => {
         res.status(201).json(response);
