@@ -1,4 +1,3 @@
-
 const usersControllers = require("./users.controllers");
 
 const getAllUsers = (req, res) => {
@@ -8,7 +7,7 @@ const getAllUsers = (req, res) => {
       res.status(200).json({
         length: response.length,
         timeZone: new Date(),
-        data: response
+        data: response,
       });
     })
     .catch((err) => {
@@ -19,7 +18,7 @@ const getAllUsers = (req, res) => {
 };
 
 const createUser = (req, res) => {
-  const { firstName, lastName, email, password, birthday, isActive } = req.body;
+  const { firstName, lastName, email, password, birthday } = req.body;
 
   if (firstName && lastName && email && password && birthday) {
     usersControllers
@@ -29,7 +28,6 @@ const createUser = (req, res) => {
         email,
         password,
         birthday,
-        isActive
       })
       .then((response) => {
         res.status(201).json(response);
@@ -87,7 +85,7 @@ const updateUser = (req, res) => {
       email,
       password,
       birthday,
-      isActive
+      isActive,
     })
     .then((response) => {
       if (response[0]) {
