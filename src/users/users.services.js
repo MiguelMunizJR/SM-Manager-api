@@ -78,7 +78,7 @@ const deleteUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, email, password, birthday } = req.body;
+  const { firstName, lastName, email, password, birthday, isActive } = req.body;
 
   usersControllers
     .patchProduct(id, {
@@ -87,6 +87,7 @@ const updateUser = (req, res) => {
       email,
       password,
       birthday,
+      isActive
     })
     .then((response) => {
       if (response[0]) {

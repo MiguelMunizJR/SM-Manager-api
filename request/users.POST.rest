@@ -1,23 +1,25 @@
-POST http://localhost:8001/api/v1/users
-Content-Type: application/json
-
-{
-  "firstName": "Miguel",
-  "lastName": "Muñiz",
-  "email": "miguel@hotmail.com",
-  "password": "miguel123",
-  "birthday": "2017-01-24"
-}
-
-###
-
-# POST https://crud-api-express.onrender.com/api/v1/users
+# POST http://localhost:8001/api/v1/users
 # Content-Type: application/json
 
 # {
-#   "firstName": "Miranda",
-#   "lastName": "Muñiz",
-#   "email": "miranda@hotmail.com",
-#   "password": "miranda123",
-#   "birthday": "2017-01-24"
+#   "firstName": "Gael",
+#   "lastName": "Alejandro",
+#   "email": "gael@hotmail.com",
+#   "password": "gael123",
+#   "birthday": "2017-01-24",
+#   "isActive": false
 # }
+
+###
+
+POST https://crud-api-express.onrender.com/api/v1/users
+Content-Type: application/json
+
+{
+  "firstName": "Gael",
+  "lastName": "Alejandro",
+  "email": "gael@hotmail.com",
+  "password": "gael123",
+  "birthday": "2017-01-24",
+  "isActive": false
+}
