@@ -22,7 +22,7 @@ const createUser = (req, res) => {
 
   if (firstName && lastName && email && password && birthday) {
     usersControllers
-      .createProduct({
+      .createUser({
         firstName,
         lastName,
         email,
@@ -79,7 +79,7 @@ const updateUser = (req, res) => {
   const { firstName, lastName, email, password, birthday, isActive } = req.body;
 
   usersControllers
-    .patchProduct(id, {
+    .patchUser(id, {
       firstName,
       lastName,
       email,

@@ -13,7 +13,7 @@ const getAllUsers = async () => {
   return data;
 };
 
-const createProduct = async (data) => {
+const createUser = async (data) => {
   const newUser = await Users.create({
     id: uuid.v4(),
     firstName: data.firstName,
@@ -36,7 +36,7 @@ const deleteUser = async (id) => {
   return data;
 };
 
-const patchProduct = async (id, data) => {
+const patchUser = async (id, data) => {
   const user = await Users.update(data, {
     where: {
       id,
@@ -47,7 +47,7 @@ const patchProduct = async (id, data) => {
 
 module.exports = {
   getAllUsers,
-  createProduct,
+  createUser,
   deleteUser,
-  patchProduct,
+  patchUser,
 };
