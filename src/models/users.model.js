@@ -38,12 +38,10 @@ const Users = db.define("users", {
   },
   status: {
     type: DataTypes.STRING,
-    allowNull: false,
     defaultValue: "active",
   },
   role: {
     type: DataTypes.STRING,
-    allowNull: false,
     defaultValue: "normal",
   },
 });

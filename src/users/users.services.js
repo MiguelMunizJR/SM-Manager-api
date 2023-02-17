@@ -147,10 +147,16 @@ const patchMyUser = (req, res) => {
       password,
       birthday,
     })
-    .then(() => {
-      res.status(200).json({
-        message: "User edited succesfully!",
-      });
+    .then((response) => {
+      if (response[0] !== 0) {
+        res.status(200).json({
+          message: "User edited succesfully!",
+        });
+      } else {
+        res.status(400).json({
+          message: "Invalid ID"
+        });
+      }
     })
     .catch((err) => {
       res.status(400).json({

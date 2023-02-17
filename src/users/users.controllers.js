@@ -1,12 +1,22 @@
 const Users = require("../models/users.model");
+const Tasks = require("../models/tasks.model");
 const uuid = require("uuid");
-const { hashPassword } = require("../utils/cryptoPass").hashPassword;
+const Clients = require("../models/clients.model");
+const hashPassword = require("../utils/cryptoPass").hashPassword;
 
 const getAllUsers = async () => {
   const data = await Users.findAll({
     attributes: {
       exclude: ["createdAt", "updatedAt"],
     },
+    include: [
+      {
+        model: Clients,
+      },
+      {
+        model: Tasks,
+      },
+    ],
   });
   return data;
 };
@@ -46,6 +56,23 @@ const getUserById = async (id) => {
   const data = await Users.findOne({
     where: {
       id,
+    },
+    include: [
+      {
+        model: Clients,
+        attributes: {
+          exclude: ["updatedAt", "createdAt", "password"]
+        }
+      },
+      {
+        model: Tasks,
+        attributes: {
+          exclude: ["updatedAt", "createdAt"]
+        }
+      },
+    ],
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "role", "password"],
     },
   });
   return data;

@@ -1,8 +1,10 @@
 const clientsControllers = require("./clients.controllers");
 
 const getAllClients = (req, res) => {
+  const userId = req.user.id;
+
   clientsControllers
-    .getAllClients()
+    .getAllClients(userId)
     .then((response) => {
       res.status(200).json({
         length: response.length,
@@ -17,12 +19,34 @@ const getAllClients = (req, res) => {
     });
 };
 
+const getClientById = (req, res) => {
+  const id = req.params.id;
+
+  clientsControllers.getClientById(id)
+    .then((response) => {
+      if (response) {
+        res.status(200).json(response);
+      } else {
+        res.status(404).json({
+          message: "Invalid ID"
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: err.message
+      });
+    });
+
+};
+
 const createClient = (req, res) => {
+  const userId = req.user.id;
   const { firstName, lastName, email, password, birthday, phone } = req.body;
 
   if (firstName && lastName && email && password && birthday) {
     clientsControllers
-      .createClient({
+      .createClient(userId, {
         firstName,
         lastName,
         email,
@@ -111,6 +135,7 @@ const updateClient = (req, res) => {
 
 module.exports = {
   getAllClients,
+  getClientById,
   createClient,
   updateClient,
   deleteClient,

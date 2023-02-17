@@ -43,14 +43,13 @@ const Clients = db.define("clients", {
       isInt: true,
     },
   },
-  isActive: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-    field: "is_active",
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "active",
   },
   userId: {
     type: DataTypes.UUID,
-    allowNull: false,
     references: {
       model: Users,
       key: "id",

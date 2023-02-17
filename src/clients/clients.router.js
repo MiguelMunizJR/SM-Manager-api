@@ -1,14 +1,32 @@
 const router = require("express").Router();
 const clientsServices = require("./clients.services");
+const passport = require("passport");
+require("../middlewares/auth.middleware")(passport);
 
 router
   .route("/")
-  .get(clientsServices.getAllClients)
-  .post(clientsServices.createClient);
-
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    clientsServices.getAllClients
+  )
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    clientsServices.createClient
+  );
+  
 router
   .route("/:id")
-  .patch(clientsServices.updateClient)
-  .delete(clientsServices.deleteClient);
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    clientsServices.getClientById
+  )
+  .patch(
+    passport.authenticate("jwt", { session: false }),
+    clientsServices.updateClient
+  )
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    clientsServices.deleteClient
+  );
 
 module.exports = router;

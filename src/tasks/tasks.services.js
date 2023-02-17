@@ -1,7 +1,9 @@
 const TasksControllers = require("./tasks.controllers");
 
 const getAllTasks = (req, res) => {
-  TasksControllers.getAllTasks()
+  const userId = req.user.id;
+
+  TasksControllers.getAllTasks(userId)
     .then((response) => {
       res.status(200).json({
         length: response.length,
@@ -16,11 +18,32 @@ const getAllTasks = (req, res) => {
     });
 };
 
+const getTaskById = (req, res) => {
+  const id = req.params.id;
+
+  TasksControllers.getTaskById(id)
+    .then((response) => {
+      if (response) {
+        res.status(200).json(response);
+      } else {
+        res.status(404).json({
+          message: "Invalid ID"
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: err.message
+      });
+    });
+};
+
 const createTask = (req, res) => {
+  const userId = req.user.id;
   const { title, description, isCompleted } = req.body;
 
   if (title) {
-    TasksControllers.createTask({ title, description, isCompleted })
+    TasksControllers.createTask(userId, { title, description, isCompleted })
       .then((response) => {
         res.status(201).json(response);
       })
@@ -91,6 +114,7 @@ const deleteTask = (req, res) => {
 
 module.exports = {
   getAllTasks,
+  getTaskById,
   createTask,
   updateTask,
   deleteTask,

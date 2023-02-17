@@ -16,14 +16,12 @@ const Tasks = db.define("tasks", {
     type: DataTypes.STRING,
     defaultValue: "no description",
   },
-  isCompleted: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-    field: "is_completed",
+  status: {
+    type: DataTypes.STRING,
+    defaultValue: "not completed",
   },
   userId: {
     type: DataTypes.UUID,
-    allowNull: false,
     references: {
       model: Users,
       key: "id",

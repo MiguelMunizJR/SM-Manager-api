@@ -1,17 +1,37 @@
 const Tasks = require("../models/tasks.model");
 const uuid = require("uuid");
 
-const getAllTasks = async () => {
-  const data = await Tasks.findAll();
+const getAllTasks = async (userId) => {
+  const data = await Tasks.findAll({
+    where: {
+      userId
+    },
+    attributes: {
+      exclude: ["updatedAt", "userId"]
+    }
+  });
   return data;
 };
 
-const createTask = async (data) => {
+const getTaskById = async (id) => {
+  const data = await Tasks.findOne({
+    where: {
+      id
+    },
+    attributes: {
+      exclude: ["updatedAt", "userId"]
+    }
+  });
+  return data;
+};
+
+const createTask = async (userId, data) => {
   const task = await Tasks.create({
     id: uuid.v4(),
     title: data.title,
     description: data.description,
     isCompleted: data.isCompleted,
+    userId: userId
   });
   return task;
 };
@@ -36,6 +56,7 @@ const deleteTask = async (id) => {
 
 module.exports = {
   getAllTasks,
+  getTaskById,
   createTask,
   patchTask,
   deleteTask,
