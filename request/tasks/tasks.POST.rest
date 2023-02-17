@@ -1,21 +1,15 @@
-POST http://localhost:8001/api/v1/tasks
-Content-Type: application/json
-
-{
-  "title": "Hola leche",
-  "description": "jajaja",
-}
-
-###
-
-# POST https://crud-api-express.onrender.com/api/v1/tasks
+# POST http://localhost:8001/api/v1/tasks
 # Content-Type: application/json
 
 # {
-#   "firstName": "Gael",
-#   "lastName": "Alejandro",
-#   "email": "gael@hotmail.com",
-#   "password": "gael123",
-#   "birthday": "2017-01-24",
-#   "isActive": false
+#   "title": "Agregar elemento div a proyecto"
 # }
+
+###
+
+POST https://crud-api-express.onrender.com/api/v1/tasks
+Content-Type: application/json
+
+{
+  "title": "Agregar elemento div a proyecto"
+}

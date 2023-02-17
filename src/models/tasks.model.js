@@ -1,5 +1,6 @@
 const db = require("../db/database");
 const DataTypes = require("sequelize").DataTypes;
+const Users = require("./users.model");
 
 const Tasks = db.define("tasks", {
   id: {
@@ -18,7 +19,15 @@ const Tasks = db.define("tasks", {
   isCompleted: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
-    field: "is_completed"
+    field: "is_completed",
+  },
+  userId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      Users,
+    },
+    field: "user_id",
   },
 });
 

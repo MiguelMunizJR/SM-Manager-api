@@ -1,7 +1,8 @@
 const db = require("../db/database");
+const Users = require("./users.model");
 const DataTypes = require("sequelize").DataTypes;
 
-const Users = db.define("users", {
+const Clients = db.define("clients", {
   id: {
     primaryKey: true,
     type: DataTypes.UUID,
@@ -36,16 +37,25 @@ const Users = db.define("users", {
       isDate: true,
     },
   },
+  phone: {
+    type: DataTypes.INTEGER,
+    validate: {
+      isInt: true,
+    },
+  },
   isActive: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
     field: "is_active",
   },
-  isAdmin: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-    field: "is_admin",
+  userId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      Users,
+    },
+    field: "user_id"
   },
 });
 
-module.exports = Users;
+module.exports = Clients;
