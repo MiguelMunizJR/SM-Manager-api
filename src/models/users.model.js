@@ -36,15 +36,15 @@ const Users = db.define("users", {
       isDate: true,
     },
   },
-  isActive: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-    field: "is_active",
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "active",
   },
-  isAdmin: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-    field: "is_admin",
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "normal",
   },
 });
 

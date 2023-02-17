@@ -17,7 +17,7 @@ const getAllUsers = (req, res) => {
     });
 };
 
-const createUser = (req, res) => {
+const registerUser = (req, res) => {
   const { firstName, lastName, email, password, birthday } = req.body;
 
   if (firstName && lastName && email && password && birthday) {
@@ -76,7 +76,7 @@ const deleteUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, email, password, birthday, isActive } = req.body;
+  const { firstName, lastName, email, password, birthday } = req.body;
 
   usersControllers
     .patchUser(id, {
@@ -85,7 +85,6 @@ const updateUser = (req, res) => {
       email,
       password,
       birthday,
-      isActive,
     })
     .then((response) => {
       if (response[0]) {
@@ -105,9 +104,85 @@ const updateUser = (req, res) => {
     });
 };
 
+const getUserById = (req, res) => {
+  const id = req.params.id;
+
+  usersControllers
+    .getUserById(id)
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.status(404).json({
+        message: err.message,
+      });
+    });
+};
+
+//TODO Mi user services:
+
+const getMyUser = (req, res) => {
+  //? req.user contiene la informacion del token desencriptado
+  const id = req.user.id;
+
+  usersControllers
+    .getUserById(id)
+    .then((response) => {
+      res.status(200).json(response);
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err.message });
+    });
+};
+
+const patchMyUser = (req, res) => {
+  const id = req.user.id;
+  const { firstName, lastName, email, password, birthday } = req.body;
+
+  usersControllers
+    .patchUser(id, {
+      firstName,
+      lastName,
+      email,
+      password,
+      birthday,
+    })
+    .then(() => {
+      res.status(200).json({
+        message: "User edited succesfully!",
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: err.message,
+      });
+    });
+};
+
+const deleteMyUser = (req, res) => {
+  const id = req.user.id;
+
+  usersControllers
+    .patchUser(id, { status: "inactive" })
+    .then(() => {
+      res.status(200).json({
+        message: "Your user was deleted succesfully!",
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: err.message,
+      });
+    });
+};
+
 module.exports = {
   getAllUsers,
-  createUser,
+  registerUser,
   deleteUser,
   updateUser,
+  getUserById,
+  getMyUser,
+  patchMyUser,
+  deleteMyUser,
 };

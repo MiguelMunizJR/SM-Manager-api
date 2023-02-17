@@ -1,8 +1,6 @@
 const Users = require("../models/users.model");
 const uuid = require("uuid");
-
-//* Hash password disabled!
-// const { hashPassword } = require("../utils/cryptoPass");
+const { hashPassword } = require("../utils/cryptoPass").hashPassword;
 
 const getAllUsers = async () => {
   const data = await Users.findAll({
@@ -19,9 +17,8 @@ const createUser = async (data) => {
     firstName: data.firstName,
     lastName: data.lastName,
     email: data.email,
-    password: data.password,
+    password: hashPassword(data.password),
     birthday: data.birthday,
-    isActive: data.isActive,
   });
 
   return newUser;
@@ -45,9 +42,30 @@ const patchUser = async (id, data) => {
   return user;
 };
 
+const getUserById = async (id) => {
+  const data = await Users.findOne({
+    where: {
+      id,
+    },
+  });
+  return data;
+};
+
+const getUserByEmail = async (email) => {
+  const data = await Users.findOne({
+    where: {
+      email,
+      status: "active",
+    },
+  });
+  return data;
+};
+
 module.exports = {
   getAllUsers,
   createUser,
   deleteUser,
   patchUser,
+  getUserByEmail,
+  getUserById,
 };
