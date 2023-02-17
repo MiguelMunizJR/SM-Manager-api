@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const usersServices = require("./users.services");
 
-router.route("/")
-  .get(usersServices.getAllUsers)
-  .post(usersServices.createUser);
+router.route("/");
+// .get(usersServices.getAllUsers)
+// .post(usersServices.createUser);
 
-router.route("/:id")
+router
+  .route("/:id")
+  // .get(usersServices)
   .patch(usersServices.updateUser)
   .delete(usersServices.deleteUser);
 
