@@ -52,9 +52,10 @@ const Clients = db.define("clients", {
     type: DataTypes.UUID,
     allowNull: false,
     references: {
-      Users,
+      model: Users,
+      key: "id",
     },
-    field: "user_id"
+    field: "user_id",
   },
 });
 

@@ -25,7 +25,8 @@ const Tasks = db.define("tasks", {
     type: DataTypes.UUID,
     allowNull: false,
     references: {
-      Users,
+      model: Users,
+      key: "id",
     },
     field: "user_id",
   },
