@@ -26,7 +26,7 @@ const registerUser = (req, res) => {
         firstName,
         lastName,
         email,
-        password
+        password,
       })
       .then((response) => {
         res.status(201).json(response);
@@ -44,7 +44,6 @@ const registerUser = (req, res) => {
         lastName: "string",
         email: "string",
         password: "string",
-        birthday: "YYYY/MM/DD",
       },
     });
   }
@@ -75,7 +74,8 @@ const deleteUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, email, password, birthday, status, role } = req.body;
+  const { firstName, lastName, email, password, birthday, status, role } =
+    req.body;
 
   usersControllers
     .patchUser(id, {
@@ -85,7 +85,7 @@ const updateUser = (req, res) => {
       password,
       birthday,
       status,
-      role
+      role,
     })
     .then((response) => {
       if (response[0]) {
@@ -140,30 +140,42 @@ const patchMyUser = (req, res) => {
   const id = req.user.id;
   const { firstName, lastName, email, password, birthday } = req.body;
 
-  usersControllers
-    .patchUser(id, {
-      firstName,
-      lastName,
-      email,
-      password,
-      birthday
-    })
-    .then((response) => {
-      if (response[0] !== 0) {
-        res.status(200).json({
-          message: "User edited succesfully!",
-        });
-      } else {
+  if (firstName && lastName && email && password) {
+    usersControllers
+      .patchUser(id, {
+        firstName,
+        lastName,
+        email,
+        password,
+        birthday,
+      })
+      .then((response) => {
+        if (response[0] !== 0) {
+          res.status(200).json({
+            message: "User edited succesfully!",
+          });
+        } else {
+          res.status(400).json({
+            message: "Invalid ID",
+          });
+        }
+      })
+      .catch((err) => {
         res.status(400).json({
-          message: "Invalid ID"
+          message: err.message,
         });
-      }
-    })
-    .catch((err) => {
-      res.status(400).json({
-        message: err.message,
       });
+  } else {
+    res.status(400).json({
+      message: "Missing data",
+      fields: {
+        firstName: "string",
+        lastName: "string",
+        email: "string",
+        password: "string",
+      },
     });
+  }
 };
 
 const deleteMyUser = (req, res) => {
