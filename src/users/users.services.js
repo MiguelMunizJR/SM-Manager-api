@@ -20,7 +20,7 @@ const getAllUsers = (req, res) => {
 const registerUser = (req, res) => {
   const { firstName, lastName, email, password, birthday } = req.body;
 
-  if (firstName && lastName && email && password && birthday) {
+  if (firstName && lastName && email && password) {
     usersControllers
       .createUser({
         firstName,
