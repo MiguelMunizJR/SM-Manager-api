@@ -31,6 +31,7 @@ const Users = db.define("users", {
   },
   birthday: {
     type: DataTypes.DATEONLY,
+    defaultValue: "2000-01-01",
     validate: {
       isDate: true,
     },
