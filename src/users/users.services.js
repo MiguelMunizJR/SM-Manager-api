@@ -18,7 +18,7 @@ const getAllUsers = (req, res) => {
 };
 
 const registerUser = (req, res) => {
-  const { firstName, lastName, email, password, birthday } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
   if (firstName && lastName && email && password) {
     usersControllers
@@ -26,8 +26,7 @@ const registerUser = (req, res) => {
         firstName,
         lastName,
         email,
-        password,
-        birthday,
+        password
       })
       .then((response) => {
         res.status(201).json(response);
@@ -76,7 +75,7 @@ const deleteUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, email, password, birthday } = req.body;
+  const { firstName, lastName, email, password, birthday, status, role } = req.body;
 
   usersControllers
     .patchUser(id, {
@@ -85,6 +84,8 @@ const updateUser = (req, res) => {
       email,
       password,
       birthday,
+      status,
+      role
     })
     .then((response) => {
       if (response[0]) {
@@ -145,7 +146,7 @@ const patchMyUser = (req, res) => {
       lastName,
       email,
       password,
-      birthday,
+      birthday
     })
     .then((response) => {
       if (response[0] !== 0) {
