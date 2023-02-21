@@ -173,6 +173,7 @@ const patchMyUser = (req, res) => {
         lastName: "string",
         email: "string",
         password: "string",
+        birthday: "date"
       },
     });
   }
