@@ -6,8 +6,7 @@ const getAllUsers = (req, res) => {
     .then((response) => {
       res.status(200).json({
         length: response.length,
-        timeZone: new Date(),
-        data: response,
+        data: response
       });
     })
     .catch((err) => {
@@ -26,7 +25,7 @@ const registerUser = (req, res) => {
         firstName,
         lastName,
         email,
-        password,
+        password
       })
       .then((response) => {
         res.status(201).json(response);
