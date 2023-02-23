@@ -102,7 +102,7 @@ const deleteClient = (req, res) => {
 
 const updateClient = (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, email, password, birthday, phone, isActive } =
+  const { firstName, lastName, email, password, birthday, phone, status } =
     req.body;
 
   clientsControllers
@@ -113,7 +113,7 @@ const updateClient = (req, res) => {
       password,
       birthday,
       phone,
-      isActive,
+      status,
     })
     .then((response) => {
       if (response[0]) {

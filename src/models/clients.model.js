@@ -45,7 +45,6 @@ const Clients = db.define("clients", {
   },
   status: {
     type: DataTypes.STRING,
-    allowNull: false,
     defaultValue: "active",
   },
   userId: {
