@@ -22,7 +22,7 @@ const getClientById = async (id) => {
       id
     },
     attributes: {
-      exclude: ["createdAt", "updatedAt", "userId", "password"],
+      exclude: ["createdAt", "updatedAt", "userId"],
     },
   });
   return data;
