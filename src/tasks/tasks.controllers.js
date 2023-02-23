@@ -30,7 +30,7 @@ const createTask = async (userId, data) => {
     id: uuid.v4(),
     title: data.title,
     description: data.description,
-    isCompleted: data.isCompleted,
+    status: data.status,
     userId: userId
   });
   return task;

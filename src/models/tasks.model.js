@@ -18,7 +18,7 @@ const Tasks = db.define("tasks", {
   },
   status: {
     type: DataTypes.STRING,
-    defaultValue: "not completed",
+    defaultValue: "not_completed",
   },
   userId: {
     type: DataTypes.UUID,

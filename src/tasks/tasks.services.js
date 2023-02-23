@@ -40,10 +40,10 @@ const getTaskById = (req, res) => {
 
 const createTask = (req, res) => {
   const userId = req.user.id;
-  const { title, description, isCompleted } = req.body;
+  const { title, description } = req.body;
 
   if (title) {
-    TasksControllers.createTask(userId, { title, description, isCompleted })
+    TasksControllers.createTask(userId, { title, description })
       .then((response) => {
         res.status(201).json(response);
       })
@@ -65,12 +65,12 @@ const createTask = (req, res) => {
 
 const updateTask = (req, res) => {
   const id = req.params.id;
-  const { title, description, isCompleted } = req.body;
+  const { title, description, status } = req.body;
 
   TasksControllers.patchTask(id, {
     title,
     description,
-    isCompleted,
+    status,
   })
     .then((response) => {
       if (response[0]) {
