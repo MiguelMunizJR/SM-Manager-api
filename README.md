@@ -1,7 +1,7 @@
 
-# CRUD Manager
+# SM Manager
 
-This is an API for my CRUD Manager project made with NodeJS, Express, Sequelize and postgreSQL.
+This is an API for my CRUD SM Manager project made with NodeJS, Express, Sequelize and postgreSQL.
 
 
 
