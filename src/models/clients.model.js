@@ -38,10 +38,7 @@ const Clients = db.define("clients", {
     },
   },
   phone: {
-    type: DataTypes.DECIMAL,
-    validate: {
-      isDecimal: true,
-    },
+    type: DataTypes.DECIMAL
   },
   status: {
     type: DataTypes.STRING,
