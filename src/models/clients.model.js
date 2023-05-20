@@ -33,9 +33,6 @@ const Clients = db.define("clients", {
   birthday: {
     type: DataTypes.DATEONLY,
     allowNull: false,
-    validate: {
-      isDate: true,
-    },
   },
   phone: {
     type: DataTypes.DECIMAL

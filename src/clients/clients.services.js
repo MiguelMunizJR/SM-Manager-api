@@ -71,7 +71,7 @@ const createClient = (req, res) => {
         email: "string",
         password: "string",
         birthday: "YYYY/MM/DD",
-        phone: "+52 10121312",
+        phone: "0000000000",
       },
     });
   }
