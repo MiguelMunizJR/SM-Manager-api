@@ -20,7 +20,16 @@ const app = express();
 //* JSON, Cors, Compression and initModels
 app.use(express.json());
 app.use(cors());
-app.use(compression());
+app.use(compression({
+  level: 6,
+  threshold: 10 * 1000,
+  filter: (req, res) => {
+    if (req.headers["x-no-compression"]) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
 initModels();
 
 app.get("/", (req, res) => {
