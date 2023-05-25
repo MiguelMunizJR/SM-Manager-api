@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const compression = require("compression");
 const PORT = require("./src/utils/config").port;
 require("./src/db/database");
 
@@ -16,9 +17,10 @@ const swaggerDoc = require("./swagger.json");
 
 const app = express();
 
-//* JSON, Cors and initModels
+//* JSON, Cors, Compression and initModels
 app.use(express.json());
 app.use(cors());
+app.use(compression());
 initModels();
 
 app.get("/", (req, res) => {
